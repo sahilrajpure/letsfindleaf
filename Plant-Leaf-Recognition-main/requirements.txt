@@ -3,7 +3,7 @@ openpyxl
 matplotlib
 streamlit
 numpy
-opencv-python
+opencv-python-headless
 joblib
 wikipedia
 Pillow

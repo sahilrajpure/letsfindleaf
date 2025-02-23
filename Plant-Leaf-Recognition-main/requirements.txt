@@ -1,0 +1,11 @@
+webbrowser
+scikit-learn
+openpyxl
+matplotlib
+streamlit
+numpy
+opencv-python
+joblib
+wikipedia
+Pillow
+scikit-image

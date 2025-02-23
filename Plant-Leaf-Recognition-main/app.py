@@ -60,7 +60,7 @@ def main():
     st.set_page_config(page_title="Leaf Classifier", layout="wide")
 
     # Display the college header image
-    st.image("logoheade.png", use_column_width=True)
+    st.image("logoheade.png", use_container_width=True)
 
 
     # Button to open the given link
@@ -165,11 +165,11 @@ def main():
         col1, col2, col3 = st.columns(3)
 
         with col1:
-            st.image(img, caption="📸 Original Image", use_column_width=True)
+            st.image(img, caption="📸 Original Image", use_container_width=True)
         with col2:
-            st.image(img_gray, caption="⚫ Grayscale Image", use_column_width=True, clamp=True)
+            st.image(img_gray, caption="⚫ Grayscale Image", use_container_width=True, clamp=True)
         with col3:
-            st.image(img_masked, caption="🖼️ Masked Image", use_column_width=True)
+            st.image(img_masked, caption="🖼️ Masked Image", use_container_width=True)
 
         st.write("🔍 **Extracting features and classifying...**")
 

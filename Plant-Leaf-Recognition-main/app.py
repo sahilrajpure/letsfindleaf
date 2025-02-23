@@ -62,11 +62,26 @@ def main():
     # Display the college header image
     st.image("Plant-Leaf-Recognition-main/logoheade.png", use_container_width=True)
 
+    # Button to open the external plant analyzer
+    st.markdown(
+        """
+        <a href="https://mvluplantfilter.streamlit.app/?embed_options=light_theme,show_padding" target="_blank">
+            <button style="
+                background-color:#2E7D32; 
+                color:white; 
+                font-size:16px; 
+                border-radius:8px; 
+                padding:8px 16px; 
+                border:none;
+                cursor:pointer;">
+                🌱 Similar Plant Analyzer with AI
+            </button>
+        </a>
+        """,
+        unsafe_allow_html=True
+    )
 
-    # Button to open the given link
-    if st.button("🌱Similar plant Analyzer with AI"):
-        webbrowser.open_new_tab("https://mvluplantfilter.streamlit.app/?embed_options=light_theme,show_padding")
-        st.success("Opened Similar Plant Analyzer!")
+
 
     # Apply custom nature-themed CSS styling
     st.markdown(

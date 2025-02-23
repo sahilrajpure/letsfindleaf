@@ -15,7 +15,7 @@ import time
 
 # Load trained model, label encoder, and accuracy score (if available)
 model = joblib.load("Plant-Leaf-Recognition-main/leaf_model.pkl")
-label_encoder = joblib.load("label_encoder.pkl")
+label_encoder = joblib.load("Plant-Leaf-Recognition-main/label_encoder.pkl")
 try:
     model_accuracy = joblib.load("model_accuracy.pkl")  # Assuming you saved accuracy during training
 except:

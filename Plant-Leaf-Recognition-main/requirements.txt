@@ -1,4 +1,3 @@
-webbrowser
 scikit-learn
 openpyxl
 matplotlib

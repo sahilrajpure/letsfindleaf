@@ -60,7 +60,7 @@ def main():
     st.set_page_config(page_title="Leaf Classifier", layout="wide")
 
     # Display the college header image
-    st.image("logoheade.png", use_container_width=True)
+    st.image("Plant-Leaf-Recognition-main/logoheade.png", use_container_width=True)
 
 
     # Button to open the given link

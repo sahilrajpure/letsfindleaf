@@ -182,8 +182,8 @@ if image_file:
     img_masked = apply_mask(img_array)
 
         # Display Images (Original, Grayscale, and Masked)
-        st.subheader("📷 Image Processing Stages")
-        col1, col2, col3 = st.columns(3)
+    st.subheader("📷 Image Processing Stages")
+    col1, col2, col3 = st.columns(3)
 
         with col1:
             st.image(img, caption="📸 Original Image", use_container_width=True)

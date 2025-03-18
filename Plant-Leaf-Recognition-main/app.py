@@ -159,13 +159,13 @@ def main():
         
 
     # File uploader
-image_file = st.file_uploader(
-    "Upload a leaf image (JPG, PNG, TIFF)...", 
-    type=["jpg", "jpeg", "png", "tif", "tiff"]
-)
+    image_file = st.file_uploader(
+        "Upload a leaf image (JPG, PNG, TIFF)...", 
+         type=["jpg", "jpeg", "png", "tif", "tiff"]
+    )
 
-# Set text color to black
-st.markdown("<style> label { color: black !important; } </style>", unsafe_allow_html=True)
+     # Set text color to black
+     st.markdown("<style> label { color: black !important; } </style>", unsafe_allow_html=True)
 
 
     

@@ -243,9 +243,9 @@ if image_file:
     ax2.set_xlabel("Feature Index")
     ax2.set_ylabel("Feature Value")
     st.pyplot(fig2)
-
-        # Footer
-        st.markdown("""
+    
+    # Footer
+    st.markdown("""
         ---
         🔬 **Built with Python, OpenCV, Scikit-Image, and Streamlit**  
         💡 **Developed by Sahil Rajpure for Plant Enthusiasts & Researchers**   

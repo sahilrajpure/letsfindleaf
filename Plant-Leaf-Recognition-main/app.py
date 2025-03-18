@@ -218,31 +218,31 @@ if image_file:
     st.success(f"📊 Classification Confidence: **{confidence_score:.2f}%**")
 
     st.write(f"[🔎 Click here to learn more!](https://www.google.com/search?q={species_name.replace(' ', '+')}+leaf)")
+    
+    # Fetch plant info from Wikipedia
+    st.subheader("📖 About this Plant")
+    plant_info = get_plant_info(species_name)
+    st.markdown(f"📝 **{species_name}**: {plant_info}", unsafe_allow_html=True)
 
-        # Fetch plant info from Wikipedia
-        st.subheader("📖 About this Plant")
-        plant_info = get_plant_info(species_name)
-        st.markdown(f"📝 **{species_name}**: {plant_info}", unsafe_allow_html=True)
+    # Visualization Section
+    st.subheader("📊 Feature & HOG Analysis")
 
-        # Visualization Section
-        st.subheader("📊 Feature & HOG Analysis")
+    # Plot 1: HOG Feature Histogram
+    fig1, ax1 = plt.subplots(figsize=(6, 3))
+    ax1.hist(raw_features, bins=30, color="green", alpha=0.7)
+    ax1.set_title("HOG Feature Distribution")
+    ax1.set_xlabel("Feature Value")
+    ax1.set_ylabel("Frequency")
+    st.pyplot(fig1)
 
-        # Plot 1: HOG Feature Histogram
-        fig1, ax1 = plt.subplots(figsize=(6, 3))
-        ax1.hist(raw_features, bins=30, color="green", alpha=0.7)
-        ax1.set_title("HOG Feature Distribution")
-        ax1.set_xlabel("Feature Value")
-        ax1.set_ylabel("Frequency")
-        st.pyplot(fig1)
-
-        # Plot 2: Scatter Plot of HOG Features
-        fig2, ax2 = plt.subplots(figsize=(6, 3))
-        x_values = np.arange(len(raw_features))
-        ax2.scatter(x_values, raw_features, color="blue", alpha=0.6, s=10)
-        ax2.set_title("HOG Feature Scatter Plot")
-        ax2.set_xlabel("Feature Index")
-        ax2.set_ylabel("Feature Value")
-        st.pyplot(fig2)
+    # Plot 2: Scatter Plot of HOG Features
+    fig2, ax2 = plt.subplots(figsize=(6, 3))
+    x_values = np.arange(len(raw_features))
+    ax2.scatter(x_values, raw_features, color="blue", alpha=0.6, s=10)
+    ax2.set_title("HOG Feature Scatter Plot")
+    ax2.set_xlabel("Feature Index")
+    ax2.set_ylabel("Feature Value")
+    st.pyplot(fig2)
 
         # Footer
         st.markdown("""

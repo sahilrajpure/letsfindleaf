@@ -13,6 +13,9 @@ import webbrowser
 import time
 
 st.set_page_config(page_title="Leaf Classifier", layout="wide")
+# Display the college header image
+st.image("Plant-Leaf-Recognition-main/logoheade.png", use_container_width=True)
+
 
 # Load trained model, label encoder, and accuracy score (if available)
 model = joblib.load("Plant-Leaf-Recognition-main/leaf_model.pkl")
@@ -56,10 +59,6 @@ def convert_to_grayscale(img_array):
     return rgb2gray(img_array)
 
 def main():
-
-    # Display the college header image
-    st.image("Plant-Leaf-Recognition-main/logoheade.png", use_container_width=True)
-
     # Button to open the external plant analyzer
     st.markdown(
         """

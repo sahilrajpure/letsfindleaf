@@ -211,13 +211,13 @@ if image_file:
             confidence_score = probabilities[predicted_index] * 100
             result = model.classes_[predicted_index]
         
-        species_name = label_encoder.inverse_transform([result])[0]
-        st.success(f"🌱 This leaf is from the species: **{species_name}**")
+    species_name = label_encoder.inverse_transform([result])[0]
+    st.success(f"🌱 This leaf is from the species: **{species_name}**")
+    
+    # Display output accuracy (classification confidence)
+    st.success(f"📊 Classification Confidence: **{confidence_score:.2f}%**")
 
-        # Display output accuracy (classification confidence)
-        st.success(f"📊 Classification Confidence: **{confidence_score:.2f}%**")
-
-        st.write(f"[🔎 Click here to learn more!](https://www.google.com/search?q={species_name.replace(' ', '+')}+leaf)")
+    st.write(f"[🔎 Click here to learn more!](https://www.google.com/search?q={species_name.replace(' ', '+')}+leaf)")
 
         # Fetch plant info from Wikipedia
         st.subheader("📖 About this Plant")

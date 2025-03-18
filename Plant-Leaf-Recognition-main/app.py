@@ -176,10 +176,10 @@ if image_file:
     img_array = np.array(img)
         
         # Convert to grayscale
-        img_gray = convert_to_grayscale(img_array)
+    img_gray = convert_to_grayscale(img_array)
 
         # Apply mask
-        img_masked = apply_mask(img_array)
+    img_masked = apply_mask(img_array)
 
         # Display Images (Original, Grayscale, and Masked)
         st.subheader("📷 Image Processing Stages")

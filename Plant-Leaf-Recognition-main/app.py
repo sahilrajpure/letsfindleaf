@@ -191,17 +191,19 @@ if image_file:
             st.image(img_gray, caption="⚫ Grayscale Image", use_container_width=True, clamp=True)
     with col3:
             st.image(img_masked, caption="🖼️ Masked Image", use_container_width=True)
-                st.write("🔍 **Extracting features and classifying...**")
-
-        # Extract features and predict with probabilities
-        features, raw_features = extract_features(img_array)
-        probabilities = model.predict_proba(features)[0]  # Get probability distribution
-        predicted_index = np.argmax(probabilities)  # Get the index of the highest probability
-        confidence_score = probabilities[predicted_index] * 100  # Convert to percentage
-        result = model.classes_[predicted_index]  # Get predicted class
-
-        # Apply mask if confidence is low
-        if confidence_score < 50:
+        
+    st.write("🔍 **Extracting features and classifying...**")
+    
+    # Extract features and predict with probabilities
+    features, raw_features = extract_features(img_array)
+    probabilities = model.predict_proba(features)[0]  # Get probability distribution
+    predicted_index = np.argmax(probabilities)  # Get the index of the highest probability
+    confidence_score = probabilities[predicted_index] * 100  # Convert to percentage
+    result = model.classes_[predicted_index]  # Get predicted class
+    
+    # Apply mask if confidence is low
+    
+    if confidence_score < 50:
             st.warning("⚠️ Low confidence detected! Applying a custom mask for better results.")
             features, raw_features = extract_features(img_masked)
             probabilities = model.predict_proba(features)[0]

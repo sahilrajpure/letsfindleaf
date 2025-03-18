@@ -192,8 +192,7 @@ if image_file:
     with col3:
             st.image(img_masked, caption="🖼️ Masked Image", use_container_width=True)
         
-    
-    st.write("🔍 **Extracting features and classifying...**")
+        st.write("🔍 **Extracting features and classifying...**")
 
         # Extract features and predict with probabilities
         features, raw_features = extract_features(img_array)
@@ -224,7 +223,6 @@ if image_file:
         plant_info = get_plant_info(species_name)
         st.markdown(f"📝 **{species_name}**: {plant_info}", unsafe_allow_html=True)
 
-
         # Visualization Section
         st.subheader("📊 Feature & HOG Analysis")
 
@@ -245,12 +243,12 @@ if image_file:
         ax2.set_ylabel("Feature Value")
         st.pyplot(fig2)
 
-         # Footer
+        # Footer
         st.markdown("""
         ---
         🔬 **Built with Python, OpenCV, Scikit-Image, and Streamlit**  
         💡 **Developed by Sahil Rajpure for Plant Enthusiasts & Researchers**   
-    """)
+        """)
 
 if __name__ == '__main__':
     main()

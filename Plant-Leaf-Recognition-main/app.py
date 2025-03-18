@@ -210,7 +210,7 @@ if image_file:
             predicted_index = np.argmax(probabilities)
             confidence_score = probabilities[predicted_index] * 100
             result = model.classes_[predicted_index]
-
+        
         species_name = label_encoder.inverse_transform([result])[0]
         st.success(f"🌱 This leaf is from the species: **{species_name}**")
 

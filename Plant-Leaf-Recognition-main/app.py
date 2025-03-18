@@ -165,8 +165,7 @@ def main():
     )
 
      # Set text color to black
-     st.markdown("<style> label { color: black !important; } </style>", unsafe_allow_html=True)
-
+    st.markdown("<style> label { color: black !important; } </style>", unsafe_allow_html=True)
 
     
     if image_file:

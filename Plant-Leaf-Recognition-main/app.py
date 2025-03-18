@@ -80,6 +80,7 @@ def main():
         unsafe_allow_html=True
     )
 
+
     st.markdown(
         """
         <style>
@@ -112,16 +113,18 @@ def main():
             transform: scale(1.05);
         }
 
-        .stMarkdown {
-            background: rgba(255, 255, 255, 0.7);
-            padding: 15px;
-            border-radius: 10px;
-            color: black;
-        }
+        .stMarkdown {{
+                background: rgba(255, 255, 255, 0.7);
+                padding: 15px;
+                border-radius: 10px;
+                color: black;
+            }
         </style>
-        """,
-        unsafe_allow_html=True
+        """, unsafe_allow_html=True
     )
+
+    # Rest of your Streamlit app code...
+
 
     # App Title and Project Overview
     st.title("🌿 Leaf Classifier")
@@ -145,13 +148,13 @@ def main():
 
     # Sidebar with Instructions
     with st.sidebar:
-        st.header("📌 Instructions")
-        st.write("""
-        1. Upload a **leaf image** (JPG, PNG, TIFF).
-        2. Click **Predict** to classify the species.
-        3. **Low confidence?** A mask is applied automatically.
-        """)
-        st.info("Model uses HOG features for classification.")
+    st.header("📌 Instructions")
+    st.write("""
+    1. Upload a **leaf image** (JPG, PNG, TIFF).
+    2. Click **Predict** to classify the species.
+    3. **Low confidence?** A mask is applied automatically.
+    """)
+    st.info("Model uses HOG features for classification.")  
 
 # Custom CSS to change the text color to black
 st.markdown("""

@@ -80,7 +80,6 @@ def main():
         unsafe_allow_html=True
     )
 
-
     st.markdown(
         """
         <style>
@@ -113,18 +112,16 @@ def main():
             transform: scale(1.05);
         }
 
-        .stMarkdown {{
-                background: rgba(255, 255, 255, 0.7);
-                padding: 15px;
-                border-radius: 10px;
-                color: black;
-            }
+        .stMarkdown {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            color: black;
+        }
         </style>
-        """, unsafe_allow_html=True
+        """,
+        unsafe_allow_html=True
     )
-
-    # Rest of your Streamlit app code...
-
 
     # App Title and Project Overview
     st.title("🌿 Leaf Classifier")
@@ -155,16 +152,19 @@ def main():
         3. **Low confidence?** A mask is applied automatically.
         """)
         st.info("Model uses HOG features for classification.")
-        
 
-    # File uploader
-    image_file = st.file_uploader("Upload a leaf image (JPG, PNG, TIFF)...", type=["jpg", "jpeg", "png", "tif", "tiff"])
+# Custom CSS to change the text color to black
+st.markdown("""
+    <style>
+        div.stFileUploader label {
+            color: black !important;
+            font-weight: bold;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
-    if image_file:
-        # Load and display the image
-        img = Image.open(image_file)
-        img = img.convert("RGB")
-        img_array = np.array(img)
+# File uploader
+image_file = st.file_uploader("Upload a leaf image (JPG, PNG, TIFF)...", type=["jpg", "jpeg", "png", "tif", "tiff"])
 
 if image_file:
     # Load and display the image
@@ -173,33 +173,33 @@ if image_file:
     img_array = np.array(img)
         
         # Convert to grayscale
-        img_gray = convert_to_grayscale(img_array)
+    img_gray = convert_to_grayscale(img_array)
 
         # Apply mask
-        img_masked = apply_mask(img_array)
+    img_masked = apply_mask(img_array)
 
         # Display Images (Original, Grayscale, and Masked)
-        st.subheader("📷 Image Processing Stages")
-        col1, col2, col3 = st.columns(3)
+    st.subheader("📷 Image Processing Stages")
+    col1, col2, col3 = st.columns(3)
 
-        with col1:
+    with col1:
             st.image(img, caption="📸 Original Image", use_container_width=True)
-        with col2:
+    with col2:
             st.image(img_gray, caption="⚫ Grayscale Image", use_container_width=True, clamp=True)
-        with col3:
+    with col3:
             st.image(img_masked, caption="🖼️ Masked Image", use_container_width=True)
 
-        st.write("🔍 **Extracting features and classifying...**")
+    st.write("🔍 **Extracting features and classifying...**")
 
         # Extract features and predict with probabilities
-        features, raw_features = extract_features(img_array)
-        probabilities = model.predict_proba(features)[0]  # Get probability distribution
-        predicted_index = np.argmax(probabilities)  # Get the index of the highest probability
-        confidence_score = probabilities[predicted_index] * 100  # Convert to percentage
-        result = model.classes_[predicted_index]  # Get predicted class
+    features, raw_features = extract_features(img_array)
+    probabilities = model.predict_proba(features)[0]  # Get probability distribution
+    predicted_index = np.argmax(probabilities)  # Get the index of the highest probability
+    confidence_score = probabilities[predicted_index] * 100  # Convert to percentage
+    result = model.classes_[predicted_index]  # Get predicted class
 
         # Apply mask if confidence is low
-        if confidence_score < 50:
+    if confidence_score < 50:
             st.warning("⚠️ Low confidence detected! Applying a custom mask for better results.")
             features, raw_features = extract_features(img_masked)
             probabilities = model.predict_proba(features)[0]
@@ -207,42 +207,42 @@ if image_file:
             confidence_score = probabilities[predicted_index] * 100
             result = model.classes_[predicted_index]
 
-        species_name = label_encoder.inverse_transform([result])[0]
-        st.success(f"🌱 This leaf is from the species: **{species_name}**")
+    species_name = label_encoder.inverse_transform([result])[0]
+    st.success(f"🌱 This leaf is from the species: **{species_name}**")
 
         # Display output accuracy (classification confidence)
-        st.success(f"📊 Classification Confidence: **{confidence_score:.2f}%**")
+    st.success(f"📊 Classification Confidence: **{confidence_score:.2f}%**")
 
-        st.write(f"[🔎 Click here to learn more!](https://www.google.com/search?q={species_name.replace(' ', '+')}+leaf)")
+    st.write(f"[🔎 Click here to learn more!](https://www.google.com/search?q={species_name.replace(' ', '+')}+leaf)")
 
         # Fetch plant info from Wikipedia
-        st.subheader("📖 About this Plant")
-        plant_info = get_plant_info(species_name)
-        st.markdown(f"📝 **{species_name}**: {plant_info}", unsafe_allow_html=True)
+    st.subheader("📖 About this Plant")
+    plant_info = get_plant_info(species_name)
+    st.markdown(f"📝 **{species_name}**: {plant_info}", unsafe_allow_html=True)
 
 
         # Visualization Section
-        st.subheader("📊 Feature & HOG Analysis")
+    st.subheader("📊 Feature & HOG Analysis")
 
         # Plot 1: HOG Feature Histogram
-        fig1, ax1 = plt.subplots(figsize=(6, 3))
-        ax1.hist(raw_features, bins=30, color="green", alpha=0.7)
-        ax1.set_title("HOG Feature Distribution")
-        ax1.set_xlabel("Feature Value")
-        ax1.set_ylabel("Frequency")
-        st.pyplot(fig1)
+    fig1, ax1 = plt.subplots(figsize=(6, 3))
+    ax1.hist(raw_features, bins=30, color="green", alpha=0.7)
+    ax1.set_title("HOG Feature Distribution")
+    ax1.set_xlabel("Feature Value")
+    ax1.set_ylabel("Frequency")
+    st.pyplot(fig1)
 
         # Plot 2: Scatter Plot of HOG Features
-        fig2, ax2 = plt.subplots(figsize=(6, 3))
-        x_values = np.arange(len(raw_features))
-        ax2.scatter(x_values, raw_features, color="blue", alpha=0.6, s=10)
-        ax2.set_title("HOG Feature Scatter Plot")
-        ax2.set_xlabel("Feature Index")
-        ax2.set_ylabel("Feature Value")
-        st.pyplot(fig2)
+    fig2, ax2 = plt.subplots(figsize=(6, 3))
+    x_values = np.arange(len(raw_features))
+    ax2.scatter(x_values, raw_features, color="blue", alpha=0.6, s=10)
+    ax2.set_title("HOG Feature Scatter Plot")
+    ax2.set_xlabel("Feature Index")
+    ax2.set_ylabel("Feature Value")
+    st.pyplot(fig2)
 
          # Footer
-        st.markdown("""
+    st.markdown("""
         ---
         🔬 **Built with Python, OpenCV, Scikit-Image, and Streamlit**  
         💡 **Developed by Sahil Rajpure for Plant Enthusiasts & Researchers**   

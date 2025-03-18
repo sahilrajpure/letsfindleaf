@@ -184,12 +184,12 @@ if image_file:
         # Display Images (Original, Grayscale, and Masked)
     st.subheader("📷 Image Processing Stages")
     col1, col2, col3 = st.columns(3)
-
-        with col1:
+    
+    with col1:
             st.image(img, caption="📸 Original Image", use_container_width=True)
-        with col2:
+    with col2:
             st.image(img_gray, caption="⚫ Grayscale Image", use_container_width=True, clamp=True)
-        with col3:
+    with col3:
             st.image(img_masked, caption="🖼️ Masked Image", use_container_width=True)
 
         st.write("🔍 **Extracting features and classifying...**")

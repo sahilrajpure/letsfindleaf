@@ -82,8 +82,6 @@ def main():
     )
 
 
-
-    # Apply custom nature-themed CSS styling
     st.markdown(
         """
         <style>
@@ -116,11 +114,12 @@ def main():
             transform: scale(1.05);
         }
 
-        .stMarkdown {
-            background: rgba(255, 255, 255, 0.7);
-            padding: 15px;
-            border-radius: 10px;
-        }
+        .stMarkdown {{
+                background: rgba(255, 255, 255, 0.7);
+                padding: 15px;
+                border-radius: 10px;
+                color: black;
+            }
         </style>
         """, unsafe_allow_html=True
     )
@@ -155,13 +154,17 @@ def main():
         1. Upload a **leaf image** (JPG, PNG, TIFF).
         2. Click **Predict** to classify the species.
         3. **Low confidence?** A mask is applied automatically.
-        4. **Click 'Read Aloud'** to hear the output.
         """)
         st.info("Model uses HOG features for classification.")
         
 
     # File uploader
-    image_file = st.file_uploader("Upload a leaf image (JPG, PNG, TIFF)...", type=["jpg", "jpeg", "png", "tif", "tiff"])
+   image_file = st.file_uploader(
+    "Upload a leaf image (JPG, PNG, TIFF)...", 
+    type=["jpg", "jpeg", "png", "tif", "tiff"]
+)
+st.markdown("<style>label { color: black !important; }</style>", unsafe_allow_html=True)
+
     
     if image_file:
         # Load and display the image

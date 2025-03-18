@@ -80,6 +80,7 @@ def main():
         unsafe_allow_html=True
     )
 
+
     st.markdown(
         """
         <style>
@@ -112,16 +113,18 @@ def main():
             transform: scale(1.05);
         }
 
-        .stMarkdown {
-            background: rgba(255, 255, 255, 0.7);
-            padding: 15px;
-            border-radius: 10px;
-            color: black;
-        }
+        .stMarkdown {{
+                background: rgba(255, 255, 255, 0.7);
+                padding: 15px;
+                border-radius: 10px;
+                color: black;
+            }
         </style>
-        """,
-        unsafe_allow_html=True
+        """, unsafe_allow_html=True
     )
+
+    # Rest of your Streamlit app code...
+
 
     # App Title and Project Overview
     st.title("🌿 Leaf Classifier")
@@ -152,19 +155,16 @@ def main():
         3. **Low confidence?** A mask is applied automatically.
         """)
         st.info("Model uses HOG features for classification.")
+        
 
-# Custom CSS to change the text color to black
-st.markdown("""
-    <style>
-        div.stFileUploader label {
-            color: black !important;
-            font-weight: bold;
-        }
-    </style>
-""", unsafe_allow_html=True)
+    # File uploader
+    image_file = st.file_uploader("Upload a leaf image (JPG, PNG, TIFF)...", type=["jpg", "jpeg", "png", "tif", "tiff"])
 
-# File uploader
-image_file = st.file_uploader("Upload a leaf image (JPG, PNG, TIFF)...", type=["jpg", "jpeg", "png", "tif", "tiff"])
+    if image_file:
+        # Load and display the image
+        img = Image.open(image_file)
+        img = img.convert("RGB")
+        img_array = np.array(img)
 
 if image_file:
     # Load and display the image

@@ -149,23 +149,32 @@ def main():
 
     # Sidebar with Instructions
     with st.sidebar:
-        st.header("📌 Instructions")
-        st.write("""
-        1. Upload a **leaf image** (JPG, PNG, TIFF).
-        2. Click **Predict** to classify the species.
-        3. **Low confidence?** A mask is applied automatically.
-        """)
-        st.info("Model uses HOG features for classification.")
-        
+    st.header("📌 Instructions")
+    st.write("""
+    1. Upload a **leaf image** (JPG, PNG, TIFF).
+    2. Click **Predict** to classify the species.
+    3. **Low confidence?** A mask is applied automatically.
+    """)
+    st.info("Model uses HOG features for classification.")
 
-    # File uploader
-    image_file = st.file_uploader("Upload a leaf image (JPG, PNG, TIFF)...", type=["jpg", "jpeg", "png", "tif", "tiff"])
+# Custom CSS to change the text color to black
+st.markdown("""
+    <style>
+        div.stFileUploader label {
+            color: black !important;
+            font-weight: bold;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
-    if image_file:
-        # Load and display the image
-        img = Image.open(image_file)
-        img = img.convert("RGB")
-        img_array = np.array(img)
+# File uploader
+image_file = st.file_uploader("Upload a leaf image (JPG, PNG, TIFF)...", type=["jpg", "jpeg", "png", "tif", "tiff"])
+
+if image_file:
+    # Load and display the image
+    img = Image.open(image_file)
+    img = img.convert("RGB")
+    img_array = np.array(img)
         
         # Convert to grayscale
         img_gray = convert_to_grayscale(img_array)
